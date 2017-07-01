@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchWorkouts, deleteWorkout} from '../actions/index'
 import {Link} from 'react-router'
 
-import _ from 'lodash'
+import { map, partial, values } from 'lodash'
 
 import {RaisedButton, Snackbar} from 'material-ui'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -35,10 +35,10 @@ class Workouts extends Component {
 
   renderMoreButton() {
     const {workouts, count} = this.props
-    const moreAvailable = workouts && Object.values(workouts).length < count
+    const moreAvailable = workouts && values(workouts).length < count
 
     if (moreAvailable) {
-      const offset = Object.values(workouts).length
+      const offset = values(workouts).length
       const limit = 10
 
       return (
@@ -67,9 +67,9 @@ class Workouts extends Component {
           transitionLeaveTimeout={300}
         >
           {
-            _.map(workoutOrder, id => {
+            map(workoutOrder, id => {
               const workout = workouts[id]
-              return <WorkoutEntry key={workout.id} workout={workout} onDelete={_.partial(this.onDelete, workout)} />
+              return <WorkoutEntry key={workout.id} workout={workout} onDelete={partial(this.onDelete, workout)} />
             })
           }
         {this.renderMoreButton()}
