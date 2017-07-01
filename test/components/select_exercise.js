@@ -1,5 +1,4 @@
 import '../helpers/dom_helper'
-import {describe, it, before, afterEach} from 'mocha'
 
 import React from 'react'
 import chai from 'chai'
@@ -9,7 +8,7 @@ import sinonChai from 'sinon-chai'
 
 import _ from 'lodash'
 
-import SelectExercise from '../../components/exercises/select'
+import SelectExercise from '../../app/components/exercises/select'
 import {shallowRender} from '../helpers/theme_helper'
 
 import {exercises} from '../helpers/stubs/index'

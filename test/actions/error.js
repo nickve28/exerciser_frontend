@@ -1,10 +1,9 @@
-import {describe, it, before, after} from 'mocha'
 import sinon from 'sinon'
 import { should } from 'chai'
 
 import { localStorage } from '../helpers/dom_helper'
 
-import target from '../../actions/error'
+import target from '../../app/actions/error'
 
 should()
 
