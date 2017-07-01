@@ -76,10 +76,6 @@
     min-height: 100%;
   }
 
-  .app-container-size {
-    width: 100%;
-  }
-
   .user-nav-data {
     display: flex;
     align-items: center;
