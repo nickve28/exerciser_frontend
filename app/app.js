@@ -33,7 +33,7 @@ let composeEnhancers =
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') { //eslint-disable-line
   composeEnhancers = compose
 }
 
