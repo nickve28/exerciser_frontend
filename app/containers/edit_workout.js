@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form'
 import {connect} from 'react-redux'
 
 import {fetchWorkout, fetchExercises, updateWorkout} from '../actions/index'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import {validateWorkoutCreate, validatePExerciseCreate, validatePExerciseUnique} from '../helpers/validator'
 import { SubmissionError } from 'redux-form'
 
@@ -59,7 +59,7 @@ class EditWorkout extends Component {
 
     const id = this.props.params.id
     return this.props.updateWorkout(id, updateWorkoutPayload).then(() => {
-      browserHistory.push('/workouts') //best way to navigate..
+      hashHistory.push('/workouts') //best way to navigate..
     })
   }
 

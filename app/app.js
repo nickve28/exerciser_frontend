@@ -24,7 +24,7 @@ import Progress from './containers/progress'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 
 let composeEnhancers =
   typeof window === 'object' &&
@@ -57,7 +57,7 @@ injectTapEventPlugin()
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
+      <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
         <Route path="/" component={Root}>
           <IndexRoute component={Exercises} />
           <Route path="/exercises/new" component={NewExercise} />
