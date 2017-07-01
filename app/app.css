@@ -155,8 +155,6 @@ ul {
 .nav > li > a {
   position: relative;
   display: block;
-  padding-top: 15px;
-  padding-bottom: 15px;
   padding-left: 10px;
   padding-right: 10px;
 }

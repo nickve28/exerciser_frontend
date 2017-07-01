@@ -47,6 +47,11 @@
     height: 28px;
   }
 
+  .nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
   .navbar-nav {
     margin: 0px !important;
   }
