@@ -10,6 +10,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import WorkoutEntry from '../components/workout_entry'
 
+import Title from 'app/components/title'
+
 class Workouts extends Component {
   constructor(props) {
     super(props)
@@ -29,7 +31,6 @@ class Workouts extends Component {
   }
 
   loadWorkouts(limit, offset) {
-
     this.props.fetchWorkouts(limit, offset)
   }
 
@@ -53,11 +54,10 @@ class Workouts extends Component {
   render() {
     const { workouts, count, workoutOrder } = this.props
     return (
-      <div>
-        <div style={{marginBottom: '50px'}}>
-          <h3 style={{display: 'inline'}}>Workouts ({count})</h3>
+      <div className="content">
+        <Title title="Workouts" count={count}>
           <Link to="/workouts/new" style={{float: 'right'}}>Add Workout</Link>
-        </div>
+        </Title>
 
         <ReactCSSTransitionGroup
           component="ul"
