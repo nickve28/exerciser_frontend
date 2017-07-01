@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Login from './login'
 import NavigationBar from '../components/navigation_bar'
-import Notifications from 'sections/notifications/containers/notifications'
+import Notifications from 'app/sections/notifications/containers/notifications'
 
 import {fetchMe} from '../actions/index'
 

@@ -1,4 +1,4 @@
-import { CREATE_EXERCISE } from 'sections/exercises/actions/exercise'
+import { CREATE_EXERCISE } from 'app/sections/exercises/actions/exercise'
 
 import { createSelector } from 'reselect'
 

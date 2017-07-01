@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { map } from 'lodash'
 
-import Title from 'components/title'
-import ListView from 'components/list_view'
+import Title from 'app/components/title'
+import ListView from 'app/components/list_view'
 
 import { fetchExercises, deleteExercise } from '../actions/exercise'
 

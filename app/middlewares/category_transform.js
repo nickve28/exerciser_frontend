@@ -1,6 +1,6 @@
 import { reduce } from 'lodash'
 
-import { FETCH_CATEGORIES } from 'sections/exercises/actions/category'
+import { FETCH_CATEGORIES } from 'app/sections/exercises/actions/category'
 
 const middleware = () => next => action => {
   if (action.type !== FETCH_CATEGORIES || action.status !== 'success') {
