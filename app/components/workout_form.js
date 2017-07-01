@@ -73,7 +73,7 @@ class WorkoutForm extends Component {
       <span>
         <ReactCSSTransitionGroup
           component="ul"
-          className="list-group"
+          className="list-view-group"
           style={{marginBottom: '5px'}}
           transitionName="listitem"
           transitionEnterTimeout={500}

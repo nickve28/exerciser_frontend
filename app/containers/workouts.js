@@ -61,7 +61,7 @@ class Workouts extends Component {
 
         <ReactCSSTransitionGroup
           component="ul"
-          className="list-group"
+          className="list-view-group"
           transitionName="listitem"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}

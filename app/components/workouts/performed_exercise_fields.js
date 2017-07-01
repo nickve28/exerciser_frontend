@@ -26,7 +26,7 @@ export default (props) => {
   }
 
   return (
-    <li className='list-group-item list-group-item-gray' key={index}>
+    <li className='list-view-group-item list-view-group-item-gray' key={index}>
       <div className="form-group">
         <div>
           <label style={{marginRight: '5px'}}>Exercise #{index + 1}</label>

@@ -20,7 +20,7 @@ a {
 }
 
 .float-right {
-  float: right;
+  float: right !important;
 }
 
 /* container */
@@ -152,6 +152,19 @@ ul {
 }
 
 /* Navigation bar stuff */
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav > li > a:hover {
+  background-color: #FFF;
+}
+
 .user-nav {
   display: flex;
   margin-right: 20px;
