@@ -1,5 +1,4 @@
 import domHelper from '../helpers/dom_helper'
-import {it, beforeEach, afterEach, describe} from 'mocha'
 
 import React from 'react'
 import chai from 'chai'
@@ -7,7 +6,7 @@ import sinon from 'sinon'
 import chaiEnzyme from 'chai-enzyme'
 
 
-import Workouts from '../../containers/workouts'
+import Workouts from '../../app/containers/workouts'
 
 import {mountRender} from '../helpers/theme_helper'
 import createStore from '../helpers/store_helper'
@@ -16,7 +15,7 @@ import createStore from '../helpers/store_helper'
 chai.use(chaiEnzyme())
 const expect = chai.expect
 
-describe('<Workouts />', () => {
+xdescribe('<Workouts />', () => {
 
   beforeEach(function () {
     domHelper()

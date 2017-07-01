@@ -24,14 +24,18 @@ import Progress from './containers/progress'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 
-const composeEnhancers =
+let composeEnhancers =
   typeof window === 'object' &&
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose
+
+if (process.env.NODE_ENV === 'production') {
+  composeEnhancers = compose
+}
 
 const enhancer = composeEnhancers(
   applyMiddleware(ReduxThunk, ...middlewares)
@@ -53,7 +57,7 @@ injectTapEventPlugin()
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
+      <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
         <Route path="/" component={Root}>
           <IndexRoute component={Exercises} />
           <Route path="/exercises/new" component={NewExercise} />

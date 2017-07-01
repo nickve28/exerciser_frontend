@@ -1,4 +1,4 @@
-import createApiReducer from '../../reducers/api_reducer'
+import createApiReducer from '../../app/reducers/api_reducer'
 import { expect } from 'chai'
 import sinon from 'sinon'
 

@@ -1,5 +1,4 @@
 import '../helpers/dom_helper'
-import {describe, it} from 'mocha'
 
 import React from 'react'
 import chai from 'chai'
@@ -7,7 +6,7 @@ import chaiEnzyme from 'chai-enzyme'
 
 import _ from 'lodash'
 
-import LoginForm from '../../components/login_form'
+import LoginForm from '../../app/components/login_form'
 import {shallowRender} from '../helpers/theme_helper'
 
 chai.use(chaiEnzyme())
