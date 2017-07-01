@@ -8,8 +8,7 @@ import {validateWorkoutCreate, validatePExerciseCreate, validatePExerciseUnique}
 import { SubmissionError } from 'redux-form'
 
 import moment from 'moment'
-import _, { values } from 'lodash'
-import Promise from 'bluebird'
+import _ from 'lodash'
 
 import WorkoutForm from '../components/workout_form'
 

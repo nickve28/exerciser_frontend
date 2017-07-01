@@ -7,7 +7,6 @@ import { browserHistory } from 'react-router'
 import {validateWorkoutCreate, validatePExerciseCreate, validatePExerciseUnique} from '../helpers/validator'
 import { SubmissionError } from 'redux-form'
 
-import moment from 'moment'
 import _ from 'lodash'
 
 import WorkoutForm from '../components/workout_form'
