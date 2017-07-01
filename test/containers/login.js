@@ -1,5 +1,4 @@
 import domHelper from '../helpers/dom_helper'
-import { it, beforeEach, describe } from 'mocha'
 
 import React from 'react'
 import chai from 'chai'
@@ -7,7 +6,7 @@ import sinon from 'sinon'
 import chaiEnzyme from 'chai-enzyme'
 
 
-import Login from '../../containers/login'
+import Login from '../../app/containers/login'
 import {Snackbar} from 'material-ui'
 
 import {mountRender} from '../helpers/theme_helper'
