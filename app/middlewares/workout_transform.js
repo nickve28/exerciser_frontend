@@ -1,4 +1,4 @@
-import { FETCH_WORKOUTS } from 'actions/index'
+import { FETCH_WORKOUTS } from '../actions/index'
 
 const middleware = () => next => action => {
   if (action.type !== FETCH_WORKOUTS || action.status !== 'success') {

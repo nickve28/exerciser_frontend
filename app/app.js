@@ -1,4 +1,3 @@
-import './phoenix.css'
 import './app.css'
 
 import React from 'react'

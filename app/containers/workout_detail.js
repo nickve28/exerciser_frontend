@@ -46,10 +46,10 @@ class WorkoutDetail extends Component {
             </span>
           </span>
         </div>
-        <ul className="list-group">
-          <li className="list-group-item">Workout Date: {workout.workoutDate.toString()}</li>
-          <li className="list-group-item">{workout.description}</li>
-          <li className="list-group-item">
+        <ul className="list-view-group">
+          <li className="list-view-group-item">Workout Date: {workout.workoutDate.toString()}</li>
+          <li className="list-view-group-item">{workout.description}</li>
+          <li className="list-view-group-item">
             <p>Exercises performed</p>
             {_.map(workout.performedExercises, exercise => {
               const {type, exerciseId} = exercise

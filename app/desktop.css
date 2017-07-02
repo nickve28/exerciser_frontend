@@ -21,6 +21,11 @@
     width: 50%;
   }
 
+  .nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
   .navbar-app {
     height: 50px;
     background-color: #00796B;

@@ -47,6 +47,11 @@
     height: 28px;
   }
 
+  .nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
   .navbar-nav {
     margin: 0px !important;
   }
@@ -74,10 +79,6 @@
   .app-container {
     margin-top: 28px;
     min-height: 100%;
-  }
-
-  .app-container-size {
-    width: 100%;
   }
 
   .user-nav-data {
