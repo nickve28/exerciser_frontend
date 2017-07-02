@@ -1,5 +1,5 @@
 import { pick, isNull, some, values, includes } from 'lodash'
-import { post } from '../helpers/request'
+import { post } from 'app/helpers/request'
 
 import configuration from '../configs/index'
 const url = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`

@@ -5,7 +5,7 @@ import {
   USER_LOGIN_EXPIRED,
   USER_LOGIN_EXPIRE_END,
   RESET_NOTIFICATIONS
-} from '../actions/index'
+} from 'app/actions/index'
 
 const middleware = store => next => action => {
   if (action.status !== 'failed') {

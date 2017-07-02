@@ -1,12 +1,12 @@
 import { describe, it, afterEach, beforeEach } from 'mocha'
 import { expect } from 'chai'
 
-import { loginUser } from '../../app/actions/authentication'
+import { loginUser } from 'app/actions/authentication'
 
 import moxios from 'moxios'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import authenticationMiddleware from '../../app/middlewares/authenticate'
-import { AuthenticationReducer } from '../../app/reducers/user'
+import authenticationMiddleware from 'app/middlewares/authenticate'
+import { AuthenticationReducer } from 'app/reducers/user'
 
 const rootReducer = combineReducers({
   authentication: AuthenticationReducer

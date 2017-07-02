@@ -1,8 +1,8 @@
 import handleUnauthorized from './error'
-import configuration from '../configs/index'
+import configuration from 'app/configs/index'
 
 import _ from 'lodash'
-import {post} from '../helpers/request'
+import {post} from 'app/helpers/request'
 
 export const FETCH_PROGRESS = 'FETCH_PROGRESS'
 

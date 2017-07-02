@@ -1,4 +1,4 @@
-import configuration from '../configs/index'
+import configuration from 'app/configs/index'
 export const LOGIN_ENDPOINT = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`
 
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
