@@ -16,6 +16,10 @@ a {
   color: #337ab7;
 }
 
+label {
+  font-weight: bold;
+}
+
 #root > div > div {
   height: 100%;
 }

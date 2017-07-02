@@ -2,12 +2,12 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { partial } from 'lodash'
 
-import MaterialCreateButton from '../components/material/form/create_button'
-import MaterialField from '../components/material/form/field'
-import MaterialChipInput from '../components/material/form/chip_input'
-import MaterialSelect from '../components/material/form/select'
+import MaterialCreateButton from '../../../components/material/form/create_button'
+import MaterialField from '../../../components/material/form/field'
+import MaterialChipInput from '../../../components/material/form/chip_input'
+import MaterialSelect from '../../../components/material/form/select'
 
-import { required, minimum } from '../helpers/validations'
+import { required, minimum } from '../../../helpers/validations'
 
 const EXERCISE_TYPES = {
   strength: 'strength',
