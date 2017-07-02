@@ -6,7 +6,7 @@ import {
   SAVE_WORKOUT,
   UPDATE_WORKOUT,
   DELETE_WORKOUT
-} from 'app/actions/workout'
+} from '../actions/workout'
 
 const workoutConfig = {
   dataType: 'workout',

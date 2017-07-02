@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import Title from 'app/components/title'
+import Title from '../components/title'
 
 import { fetchCategories } from '../actions/category'
 import { saveExercise } from '../actions/exercise'
 
-import getCategories from 'app/selectors/get_categories'
+import getCategories from '../selectors/get_categories'
 
 import ExerciseForm from '../containers/form'
 

@@ -10,7 +10,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import WorkoutEntry from '../components/workout_entry'
 
-import Title from 'app/components/title'
+import Title from '../components/title'
 
 class Workouts extends Component {
   constructor(props) {
