@@ -1,4 +1,4 @@
-import configuration from '../configs/index'
+import configuration from 'app/configs/index'
 export const URL = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`
 export const LOGIN_ENDPOINT = `${configuration.apiHost}:${configuration.apiPort}/api/login`
 

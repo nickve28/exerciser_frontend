@@ -1,4 +1,4 @@
-import { USER_LOGIN } from '../actions/authentication'
+import { USER_LOGIN } from 'app/actions/authentication'
 
 const middleware = () => next => action => {
   if (action.type === USER_LOGIN && action.status === 'expired') {

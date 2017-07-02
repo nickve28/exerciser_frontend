@@ -5,7 +5,7 @@
     "deploy": "NODE_ENV=production webpack -p",
     "watch": "NODE_ENV=development webpack-dev-server",
     "ci-test": "mocha --require babel-polyfill --compilers js:babel-core/register --watch --recursive test",
-    "test": "mocha --include babel-polyfill --compilers js:babel-core/register --recursive test",
+    "test": "NODE_PATH='./' mocha --include babel-polyfill --compilers js:babel-core/register --recursive test",
     "lint": "eslint ./app ./spec"
   },
   "dependencies": {

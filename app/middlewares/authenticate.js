@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import { USER_LOGIN_PENDING, USER_LOGIN } from '../actions/authentication'
+import { USER_LOGIN_PENDING, USER_LOGIN } from 'app/actions/authentication'
 
 import { post } from '../helpers/request'
 

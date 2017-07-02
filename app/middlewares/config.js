@@ -7,7 +7,7 @@ import {
   FETCH_CATEGORIES,
   FETCH_WORKOUTS,
   FETCH_WORKOUT
-} from '../actions/index'
+} from 'app/actions/index'
 
 const category = {
   plural: 'categories',
