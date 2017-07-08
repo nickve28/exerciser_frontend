@@ -11,7 +11,6 @@ import getCategories from '../../../selectors/get_categories'
 
 import ExerciseForm from '../containers/form'
 
-//recompose, something with old props vs new props pending vs success compare
 const NewExercise = ({
   categories,
   fetchCategories,
