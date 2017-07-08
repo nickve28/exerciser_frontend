@@ -1,5 +1,6 @@
 import { pick, isNull, some, values, includes } from 'lodash'
 import { post } from 'app/helpers/request'
+import Promise from 'bluebird'
 
 import configuration from '../configs/index'
 const url = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`
@@ -42,11 +43,12 @@ export default config => {
       includes(config.cache, action.type)
 
     if (shouldCache && isRecentSuccessRequest) {
-      return true
+      return Promise.resolve()
     }
 
     //Dispatch action and start API request
     next(action)
+
 
     const token = store.getState().authentication.token
     const headers = {

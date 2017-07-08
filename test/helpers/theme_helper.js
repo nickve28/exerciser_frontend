@@ -1,6 +1,6 @@
 import React from 'react'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import {shallow, mount} from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import _ from 'lodash'
 const muiTheme = getMuiTheme()
 

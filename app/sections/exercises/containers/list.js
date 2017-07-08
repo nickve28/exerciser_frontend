@@ -16,7 +16,7 @@ const ExerciseList = ({ exercises, count, fetch, remove }) => {
   return (
     <div className="content">
       <Title title="Exercises" count={count}>
-        <Link className="pull-right" to="/exercises/new">Create exercise </Link>
+        <Link className="pull-right" to="/exercises/new">Create exercise</Link>
       </Title>
       <ListView>
         {
