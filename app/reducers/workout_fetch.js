@@ -1,4 +1,4 @@
-import createReducer from '../../../reducers/api_reducer'
+import createReducer from './api_reducer'
 
 import {
   FETCH_WORKOUTS,
@@ -6,7 +6,7 @@ import {
   SAVE_WORKOUT,
   UPDATE_WORKOUT,
   DELETE_WORKOUT
-} from '../../../actions/workout'
+} from 'app/actions/workout'
 
 const workoutConfig = {
   dataType: 'workout',

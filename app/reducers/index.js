@@ -1,19 +1,20 @@
 import { combineReducers } from 'redux'
 
-import {MeReducer, AuthenticationReducer} from './user'
+import UserReducer from './user'
+import AuthenticationReducer from './authentication'
 import WorkoutReducer from './workout'
 import NotificationReducer from './notification'
 import ProgressReducer from './progress'
 
-import WorkoutFetchReducer from 'app/sections/workouts/reducers/workout'
-import ExerciseReducer from 'app/sections/exercises/reducers/exercise'
-import CategoryReducer from 'app/sections/exercises/reducers/category'
+import WorkoutFetchReducer from './workout_fetch' //Temp until workout is transitioned
+import ExerciseReducer from './exercise'
+import CategoryReducer from './category'
 
 import { reducer as FormReducer } from 'redux-form'
 
 const reducers = combineReducers({
   exercises: ExerciseReducer,
-  me: MeReducer,
+  me: UserReducer,
   authentication: AuthenticationReducer,
   categories: CategoryReducer,
   workouts: WorkoutReducer,
