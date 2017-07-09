@@ -16,8 +16,10 @@ let Login = props => {
     pristine,
     submitting,
     loginUser,
-    loginState
+    loginState,
+    valid
   } = props
+
   return (
     <div>
       <Title title="Log in" />
@@ -44,7 +46,7 @@ let Login = props => {
       />
 
       <MaterialLoginButton
-        disabled={pristine || submitting || loginState === 'logging_in'}
+        disabled={!valid || pristine || submitting || loginState === 'logging_in'}
         label="Log in"
       />
       </form>
