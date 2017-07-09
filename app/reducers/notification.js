@@ -1,6 +1,8 @@
 import {DELETE_WORKOUT, USER_LOGIN_EXPIRED, USER_LOGIN_EXPIRE_END, DELETE_WORKOUT_NOTIFICATION_END,
   EXERCISE_NOT_DELETED, RESET_NOTIFICATIONS, SAVE_WORKOUT, SAVE_WORKOUT_NOTIFICATION_END, UPDATE_WORKOUT_NOTIFICATION_END,
   UPDATE_WORKOUT } from '../actions/index'
+
+import { USER_LOGIN } from 'app/sections/authentication/actions/authentication'
 import _ from 'lodash'
 
 const END_NOTIFICATIONS = [USER_LOGIN_EXPIRE_END, DELETE_WORKOUT_NOTIFICATION_END, RESET_NOTIFICATIONS,
@@ -11,7 +13,11 @@ const INITIAL_STATE = {
   showLoginExpired: false,
   showNoExerciseDeleted: false,
   showWorkoutCreated: false,
-  showWorkoutUpdated: false
+  showWorkoutUpdated: false,
+  loginFailure: {
+    show: false,
+    message: 'Incorrect username or password.'
+  }
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,6 +36,11 @@ export default (state = INITIAL_STATE, action) => {
   if (action.type === EXERCISE_NOT_DELETED) {
     return _.defaults({showNoExerciseDeleted: true}, INITIAL_STATE)
   }
+
+  if (action.type === USER_LOGIN && action.status === 'failed') {
+    return { ...state, loginFailure: { ...state.loginFailure, show: true } }
+  }
+
   if (_.includes(END_NOTIFICATIONS, action.type)) {
     //a reset to stop notifications from lingering
     return INITIAL_STATE

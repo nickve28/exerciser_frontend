@@ -23,12 +23,6 @@ export {
 } from '../sections/exercises/actions/category'
 
 export {
-  USER_LOGIN, USER_LOGIN_EXPIRED, USER_LOGIN_PENDING, USER_LOGIN_FAILED, USER_LOGIN_EXPIRE_END,
-  loginUser
-
-} from './authentication'
-
-export {
   FETCH_PROGRESS,
   fetchProgress
 } from './progress'

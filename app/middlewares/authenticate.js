@@ -14,7 +14,7 @@ const middleware = store => next => action => {
   const pendingAction = { ...action, type: USER_LOGIN, status: 'pending' }
   store.dispatch(pendingAction) //dispatch original pending action
 
-  return post(action.payload, { url })
+  return post(action.query, { url })
     .then(response => {
       const payload = get(response, 'login', null)
       if (!payload) {

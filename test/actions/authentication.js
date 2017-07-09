@@ -1,7 +1,7 @@
 import { describe, it, afterEach, beforeEach } from 'mocha'
 import { expect } from 'chai'
 
-import { loginUser } from 'app/actions/authentication'
+import { loginUser } from 'app/sections/authentication/actions/authentication'
 
 import moxios from 'moxios'
 import { createStore, applyMiddleware, combineReducers } from 'redux'

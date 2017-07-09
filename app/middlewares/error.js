@@ -1,21 +1,39 @@
 import _ from 'lodash'
 
 import {
-  EXERCISE_NOT_DELETED,
+  RESET_NOTIFICATIONS
+} from 'app/sections/notifications/actions/notification'
+
+import {
+  EXERCISE_NOT_DELETED
+} from 'app/sections/exercises/actions/exercise'
+
+import {
   USER_LOGIN_EXPIRED,
   USER_LOGIN_EXPIRE_END,
-  RESET_NOTIFICATIONS
-} from 'app/actions/index'
+  USER_LOGIN
+} from 'app/sections/authentication/actions/authentication'
 
 const middleware = store => next => action => {
   if (action.status !== 'failed') {
     return next(action)
   }
+
+  if (action.type === USER_LOGIN) {
+    next(action)
+
+    setTimeout(() => {
+      store.dispatch({
+        type: RESET_NOTIFICATIONS
+      })
+    }, 2500)
+    return true
+  }
+
   next(action)
 
   const dispatch = store.dispatch
   const error = action.error
-
 
   const isUnauthorized = _.some(_.castArray(error), err => err && err.code === 401)
   if (isUnauthorized) {
@@ -27,7 +45,6 @@ const middleware = store => next => action => {
       dispatch({ type: USER_LOGIN_EXPIRE_END })
     }, 5000)
   }
-
 
   _.forEach(error, ({ code, details }) => {
     const isWorkoutNotDeletedError = code === 422 && _.has(details, 'performed_exercises')

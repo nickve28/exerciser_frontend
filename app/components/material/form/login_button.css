@@ -1,0 +1,7 @@
+@media screen and (max-width: 1024px) {
+  .login-btn {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+  }
+}
