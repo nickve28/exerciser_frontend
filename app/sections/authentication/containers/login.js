@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Snackbar} from 'material-ui'
 import _ from 'lodash'
 
-import {loginUser} from '../actions/index'
+import { loginUser } from '../actions/authentication'
 import LoginForm from '../components/login_form'
 
 class Login extends Component {
