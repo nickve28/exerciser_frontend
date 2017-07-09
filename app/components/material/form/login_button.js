@@ -6,15 +6,27 @@ import MediaQuery from 'react-responsive'
 const SMALL_DEVICE_QUERY = '(max-device-width: 1024px)'
 const LARGE_DEVICE_QUERY = '(min-device-width: 1024px)'
 
-export default ({ label }) =>
+import './login_button.css'
+
+export default ({ label, disabled }) =>
   <div>
     <MediaQuery query={SMALL_DEVICE_QUERY}>
-      <FloatingActionButton className="add-exercise-btn" type="submit">
+      <FloatingActionButton
+        className="login-btn"
+        type="submit"
+        disabled={disabled}
+      >
         <Check />
       </FloatingActionButton>
     </MediaQuery>
 
     <MediaQuery query={LARGE_DEVICE_QUERY}>
-      <RaisedButton style={{marginTop: '10px'}} label={label} primary={true} type="submit" />
+      <RaisedButton
+        style={{marginTop: '10px'}}
+        label={label}
+        primary={true}
+        type="submit"
+        disabled={disabled}
+      />
     </MediaQuery>
   </div>
