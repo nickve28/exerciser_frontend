@@ -22,6 +22,7 @@ export default ({ label, disabled }) =>
 
     <MediaQuery query={LARGE_DEVICE_QUERY}>
       <RaisedButton
+        className="login-btn"
         style={{marginTop: '10px'}}
         label={label}
         primary={true}
