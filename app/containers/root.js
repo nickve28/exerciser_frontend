@@ -6,6 +6,7 @@ import { fetchMe } from 'app/sections/users/actions/user'
 
 import Login from 'app/sections/authentication/containers/login'
 import NavigationBar from 'app/sections/navigation/components/navigation_bar'
+import Notifications from 'app/sections/notifications/containers/notifications'
 
 import './root.css'
 
@@ -29,6 +30,7 @@ const Root = ({ children, authenticationState, user, fetchMe }) => {
         {renderContent(authenticationState, children)}
       </div>
     </div>
+    <Notifications />
   </div>
 }
 
