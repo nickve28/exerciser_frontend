@@ -1,8 +1,17 @@
-import { FETCH_ME } from 'app/actions/index'
+import createReducer from './api_reducer'
 
-export default (state = {}, action) => {
-  if (action.type === FETCH_ME) {
-    return action.payload
+import { FETCH_ME } from 'app/sections/users/actions/user'
+
+const userConfig = {
+  dataType: 'me', //need an alias option
+  plural: 'users',
+  actions: {
+    get: FETCH_ME
+  },
+  initialState: {
+    entities: {}
   }
-  return state
 }
+
+export default createReducer(userConfig)
+

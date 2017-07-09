@@ -12,6 +12,7 @@ export const mountRender = (node, store) =>
   mount(node, {
     context: { muiTheme, store },
     childContextTypes: {
-      muiTheme: React.PropTypes.object
+      muiTheme: React.PropTypes.object,
+      store: React.PropTypes.any
     }
   })

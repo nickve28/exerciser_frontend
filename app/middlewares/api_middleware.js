@@ -72,6 +72,7 @@ export default config => {
 
         return store.dispatch(successAction)
       }).catch(error => {
+
         const failedAction = {
           query,
           error: (error instanceof Error) ? error.message : error,

@@ -14,7 +14,7 @@ import { reducer as FormReducer } from 'redux-form'
 
 const reducers = combineReducers({
   exercises: ExerciseReducer,
-  me: UserReducer,
+  users: UserReducer,
   authentication: AuthenticationReducer,
   categories: CategoryReducer,
   workouts: WorkoutReducer,

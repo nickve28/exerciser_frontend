@@ -9,12 +9,23 @@ import {
   FETCH_WORKOUT
 } from 'app/actions/index'
 
+import { FETCH_ME } from 'app/sections/users/actions/user'
+
 const category = {
   plural: 'categories',
   actions: {
     [FETCH_CATEGORIES]: ['categories']
   },
   cache: [FETCH_CATEGORIES],
+  cacheTime: 5
+}
+
+const users = {
+  plural: 'users',
+  actions: {
+    [FETCH_ME]: ['me']
+  },
+  cache: [FETCH_ME],
   cacheTime: 5
 }
 
@@ -43,5 +54,6 @@ const workouts = {
 export default [
   category,
   exercises,
-  workouts
+  workouts,
+  users
 ]

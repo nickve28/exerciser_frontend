@@ -57,4 +57,5 @@ if (IS_PROD_BUILD) {
 } else {
   var exclude = /node_modules/
   module.exports.module.loaders[0].exclude = exclude
+  module.exports.devtool = 'inline-sourcemap'
 }

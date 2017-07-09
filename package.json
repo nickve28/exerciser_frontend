@@ -5,7 +5,7 @@
     "deploy": "NODE_ENV=production webpack -p",
     "watch": "NODE_ENV=development webpack-dev-server",
     "ci-test": "mocha --require babel-polyfill --compilers js:babel-core/register --watch --recursive test",
-    "test": "NODE_PATH='./' mocha --include babel-polyfill --compilers js:babel-core/register --recursive test",
+    "test": "NODE_PATH='./' mocha --require ignore-styles --include babel-polyfill --compilers js:babel-core/register --recursive test",
     "lint": "eslint ./app ./spec"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "react-select": "^1.0.0-rc.2",
     "react-tap-event-plugin": "^2.0.1",
     "recharts": "^0.20.6",
+    "recompose": "^0.23.5",
     "redux": "^3.6.0",
     "redux-form": "^6.5.0",
     "redux-thunk": "^2.1.0",
@@ -54,6 +55,7 @@
     "eslint": "^3.15.0",
     "eslint-plugin-react": "^6.10.0",
     "extract-text-webpack-plugin": "^2.1.2",
+    "ignore-styles": "^5.0.1",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "moxios": "^0.4.0",
