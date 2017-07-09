@@ -40,7 +40,7 @@ export default class LoginForm extends Component {
 
   onFormSubmit(e) {
     e.preventDefault()
-    this.props.loginUser(this.state.username, this.state.password)
+    this.props.login(this.state.username, this.state.password)
   }
 
   renderField({name, type, value}, onChange) {

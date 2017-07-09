@@ -1,37 +1,14 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {Snackbar} from 'material-ui'
-import _ from 'lodash'
+import React from 'react'
+import { connect } from 'react-redux'
 
 import { loginUser } from '../actions/authentication'
 import LoginForm from '../components/login_form'
 
-class Login extends Component {
-  renderNotification(showDialog) {
-    return (
-      <Snackbar
-        open={showDialog || false}
-        message="Your login session expired. Please log in."
-        onRequestClose={_.noop}
-      />
-    )
-  }
+const Login = ({ loginUser, loginState }) =>
+  <LoginForm login={loginUser} loginState={loginState} />
 
-  render() {
-    return (
-      <span>
-        <LoginForm loginUser={this.props.loginUser} loginState={this.props.loginState} />
-        {this.renderNotification(this.props.notifications.showLoginExpired)}
-      </span>
-    )
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    loginState: state.authentication.loginState,
-    notifications: state.notifications
-  }
-}
+const mapStateToProps = state => ({
+  loginState: state.authentication.loginState
+})
 
 export default connect(mapStateToProps, { loginUser })(Login)
