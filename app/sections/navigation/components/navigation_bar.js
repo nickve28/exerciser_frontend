@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 import _ from 'lodash'
 
-import {Popover, Menu} from 'material-ui'
+import { Popover, Menu } from 'material-ui'
 import MediaQuery from 'react-responsive'
 
 const smallDeviceQuery = '(max-device-width: 1024px)'

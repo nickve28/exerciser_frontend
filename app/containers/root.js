@@ -5,7 +5,7 @@ import { values } from 'lodash'
 import { fetchMe } from 'app/sections/users/actions/user'
 
 import Login from './login'
-import NavigationBar from 'app/components/navigation_bar'
+import NavigationBar from 'app/sections/navigation/components/navigation_bar'
 
 import './root.css'
 
