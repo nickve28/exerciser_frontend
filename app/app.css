@@ -139,27 +139,6 @@ ul {
   list-style: none
 }
 
-/* Navigation bar stuff */
-.nav > li > a {
-  position: relative;
-  display: block;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.nav > li > a:hover {
-  background-color: #FFF;
-}
-
-.user-nav {
-  display: flex;
-  margin-right: 20px;
-}
-
-.user-nav-icon {
-  color: white;
-}
-
 .white-icon {
   color: white;
 }
@@ -192,5 +171,4 @@ ul {
   100% { opacity: 1 }
 }
 
-@import url("desktop.css");
 @import url("mobile.css");

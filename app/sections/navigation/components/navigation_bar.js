@@ -9,6 +9,8 @@ import MediaQuery from 'react-responsive'
 const smallDeviceQuery = '(max-device-width: 1024px)'
 const largeDeviceQuery = '(min-device-width: 1024px)'
 
+import './navigation_bar.css'
+
 const renderPopOver = (openDialog, anchorEl, handleRequestClose) => {
   return (
     <Popover
