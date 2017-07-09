@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import ReduxThunk from 'redux-thunk'
 
 import middlewares from './middlewares/index'
@@ -55,7 +56,7 @@ injectTapEventPlugin()
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
+    <MuiThemeProvider>
       <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
         <Route path="/" component={Root}>
           <IndexRoute component={Exercises} />
@@ -68,6 +69,6 @@ ReactDOM.render(
           <Route path="/progress" component={Progress} />
         </Route>
       </Router>
-    </div>
+    </MuiThemeProvider>
   </Provider>
   , document.querySelector('#root'))

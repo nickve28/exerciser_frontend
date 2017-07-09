@@ -1,4 +1,4 @@
-import createReducer from '../../../reducers/api_reducer'
+import createReducer from './api_reducer'
 
 import {
   FETCH_EXERCISE,
@@ -6,7 +6,7 @@ import {
   CREATE_EXERCISE,
   UPDATE_EXERCISE,
   DELETE_EXERCISE
-} from '../actions/exercise'
+} from 'app/sections/exercises/actions/exercise'
 
 const exerciseConfig = {
   dataType: 'exercise',

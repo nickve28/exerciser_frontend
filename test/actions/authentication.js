@@ -6,12 +6,11 @@ import { loginUser } from 'app/actions/authentication'
 import moxios from 'moxios'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import authenticationMiddleware from 'app/middlewares/authenticate'
-import { AuthenticationReducer } from 'app/reducers/user'
+import AuthenticationReducer from 'app/reducers/authentication'
 
 const rootReducer = combineReducers({
   authentication: AuthenticationReducer
 })
-
 
 describe('Authentication Action specs', () => {
   let store

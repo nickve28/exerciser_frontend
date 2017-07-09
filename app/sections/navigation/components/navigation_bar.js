@@ -1,13 +1,16 @@
-import React, {Component} from 'react'
+// This component might be subject to a rewrite, but not a big concern now
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import _ from 'lodash'
+import { isEmpty, get } from 'lodash'
 
-import {Popover, Menu} from 'material-ui'
+import { Popover, Menu } from 'material-ui'
 import MediaQuery from 'react-responsive'
 
 const smallDeviceQuery = '(max-device-width: 1024px)'
 const largeDeviceQuery = '(min-device-width: 1024px)'
+
+import './navigation_bar.css'
 
 const renderPopOver = (openDialog, anchorEl, handleRequestClose) => {
   return (
@@ -54,7 +57,7 @@ export default class NavigationBar extends Component {
 
   render() {
     const {user} = this.props
-    const username = _.get(user, 'name', '')
+    const username = get(user, 'name', '')
     const showMenu = this.state.showMenu ? 'show-menu' : 'hide-menu'
 
     return (
@@ -69,7 +72,7 @@ export default class NavigationBar extends Component {
               <li><Link to={'/workouts'} onClick={this.toggleMenu}>Workouts</Link></li>
               <li><Link to={'/progress'} onClick={this.toggleMenu}>Progress</Link></li>
               <li className="float-right">
-                {!_.isEmpty(user) ? (<span>
+                {!isEmpty(user) ? (<span>
                   <MediaQuery query={largeDeviceQuery} component="div" className="user-nav">
                     <i className="user-nav-icon zmdi zmdi-account zmdi-hc-4x" onClick={this.handleUserClick} />
                     <span className="user-nav-data">{user.name}</span>

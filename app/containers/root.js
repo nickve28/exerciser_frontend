@@ -1,78 +1,42 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
+import { connect } from 'react-redux'
+import { values } from 'lodash'
+
+import { fetchMe } from 'app/sections/users/actions/user'
 
 import Login from './login'
-import NavigationBar from '../components/navigation_bar'
-import Notifications from '../sections/notifications/containers/notifications'
+import NavigationBar from 'app/sections/navigation/components/navigation_bar'
 
-import {fetchMe} from '../actions/index'
+import './root.css'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+const renderContent = (authenticationState, children) => {
+  if (authenticationState !== 'logged_in') {
+    return <Login />
+  }
+  return children
+}
 
-import _ from 'lodash'
-
-
-//Todo this class needs rework so components arent defined in two places, just to rerender it with data
-class BodyData extends Component {
-  componentDidMount() {
-    this.props.fetchMe()
+const Root = ({ children, authenticationState, user, fetchMe }) => {
+  if (authenticationState === 'logged_in') {
+    fetchMe()
   }
 
-  render() {
-    const {user} = this.props
-
-    return (
-      <div>
-        <div>
-          <NavigationBar user={user} />
-        </div>
-        <div className="desktop-filler" />
-        <div className="container-fluid app-container app-container-size">
-          {this.props.children}
-        </div>
-        <Notifications />
+  return <div>
+    <div>
+      <NavigationBar user={user} />
+      <div className="desktop-filler" />
+      <div className="container-fluid app-container app-container-size">
+        {renderContent(authenticationState, children)}
       </div>
-    )
-  }
+    </div>
+  </div>
 }
 
-class Root extends Component {
-  render() {
-    const isLoggedIn =_.get(this.props, 'authentication.token')
-
-    let content
-    if (isLoggedIn) {
-      content = <BodyData
-        user={this.props.user}
-        fetchMe={this.props.fetchMe}
-        >
-          {this.props.children}
-        </BodyData>
-    } else {
-      content = (
-        <div>
-          <div><NavigationBar /></div>
-          <div className="desktop-filler" />
-          <div className="container-fluid app-container app-container-size">
-            <Login />
-          </div>
-        </div>
-      )
-    }
-
-    return (
-      <MuiThemeProvider>
-        {content}
-      </MuiThemeProvider>
-    )
-  }
-}
-
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
-    authentication: state.authentication,
-    user: state.me
+    authenticationState: state.authentication.loginState,
+    user: values(state.users.data.entities)[0]
   }
 }
 
-export default connect(mapStateToProps, {fetchMe})(Root)
+export default connect(mapStateToProps, { fetchMe })(Root)

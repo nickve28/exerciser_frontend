@@ -1,0 +1,153 @@
+/* Navigation bar stuff */
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav > li > a:hover {
+  background-color: #FFF;
+}
+
+.user-nav {
+  display: flex;
+  margin-right: 20px;
+}
+
+.user-nav-icon {
+  color: white;
+}
+
+@media screen and (min-width: 1024px) {
+  .color-bar {
+    position: absolute;
+    height: 400px;
+    width: 100%;
+    background-color: #009688;
+    z-index: -2;
+  }
+
+  .navbar-app {
+    height: 50px;
+    background-color: #00796B;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 4;
+  }
+
+  .show-mobile {
+    display: none;
+  }
+
+  .menu-nav {
+    display: none !important;
+  }
+
+  .nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .navbar-nav li:last-child {
+    padding-right: 30px;
+  }
+
+  .navbar-nav {
+    overflow: auto;
+    width: 100%;
+  }
+
+  .navbar-nav li {
+    float: left;
+  }
+
+  .navbar-nav li:first-of-type {
+    margin-left: 10px;
+  }
+
+  .navbar-nav li a {
+    color: white;
+  }
+
+  .user-nav-data {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 20px;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .color-bar {
+    visibility: hidden;
+  }
+
+  .menu-nav {
+    display: block;
+    cursor: pointer;
+    padding-left: 10px;
+  }
+
+  .show-menu {
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    background-color: #009688;
+  }
+
+  .hide-menu {
+    display: none;
+  }
+
+  .navbar-app {
+    background-color: #00796B;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 4;
+    height: 28px;
+  }
+
+  .nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .navbar-nav {
+    margin: 0px !important;
+  }
+
+  .navbar-nav li {
+    border-bottom: 1px solid #BDBDBD;
+  }
+
+  .navbar-nav li:last-child {
+    display: none; /*User field, should be done different on mobile */
+  }
+
+  .navbar-nav li a {
+    color: white;
+  }
+
+  .desktop-fillter {
+    visibility: hidden;
+  }
+
+  .user-nav-data {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    color: white;
+  }
+
+  .user-name {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-top: 5px;
+    color: white;
+  }
+}

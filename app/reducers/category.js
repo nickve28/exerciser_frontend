@@ -1,6 +1,6 @@
-import createReducer from '../../../reducers/api_reducer'
+import createReducer from './api_reducer'
 
-import { FETCH_CATEGORIES } from '../actions/category'
+import { FETCH_CATEGORIES } from 'app/sections/exercises/actions/category'
 
 const categoryConfig = {
   dataType: 'category',

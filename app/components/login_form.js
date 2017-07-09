@@ -53,7 +53,7 @@ export default class LoginForm extends Component {
 
   render() {
     return (
-      <div className="container container-fluid">
+      <div className="container container-fluid login-form">
         <h3>Log in</h3>
         <div className="error-text">{this.state.error}</div>
         <form className="form" onSubmit={this.onFormSubmit}>

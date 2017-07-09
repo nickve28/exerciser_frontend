@@ -11,8 +11,6 @@ export {
   saveWorkout, deleteWorkout, updateWorkout
 } from './workout'
 
-export {FETCH_ME, fetchMe} from './user'
-
 export {
   FETCH_EXERCISES, CREATE_EXERCISE, DELETE_EXERCISE, EXERCISE_NOT_DELETED, FETCH_EXERCISE,
   UPDATE_EXERCISE,

@@ -1,0 +1,40 @@
+.container-fluid {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+  padding-top: 5px;
+}
+
+.app-container {
+  z-index: 3;
+  background-color: #f2f2f2;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  min-height: 500px;
+}
+
+@media screen and (min-width: 1024px) {
+  .desktop-filler {
+    background-color: #009688;
+    height: 50px;
+    width: 100%;
+  }
+
+  .app-container {
+    margin-top: 100px;
+  }
+
+  .app-container-size {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .app-container {
+    margin-top: 28px;
+    min-height: 100%;
+    overflow-y: scroll;
+    height: 100%;
+  }
+}
