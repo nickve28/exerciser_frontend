@@ -20,7 +20,7 @@ label {
   font-weight: bold;
 }
 
-#root > div > div {
+#root > div > div:first-child {
   height: 100%;
 }
 
