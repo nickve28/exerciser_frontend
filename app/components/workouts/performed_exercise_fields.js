@@ -7,13 +7,13 @@ import { Field } from 'redux-form'
 import _ from 'lodash'
 
 const FIELD_TYPE_MAPPING = {
-  metric: 'text',
-  mode: 'number',
-  duration: 'number',
-  amount: 'number',
-  weight: 'number',
-  sets: 'number',
-  reps: 'number'
+  metric: { type: 'text' },
+  mode: { type: 'number' },
+  duration: { type: 'number' },
+  amount: { type: 'number' },
+  weight: { type: 'number', step: 'any' },
+  sets: { type: 'number' },
+  reps:  { type: 'number' }
 }
 
 export default (props) => {
@@ -55,14 +55,14 @@ export default (props) => {
       </div>
       {
         _.map(fields, field => {
-          const type = FIELD_TYPE_MAPPING[field] || 'text'
+          let fieldTypeProps = FIELD_TYPE_MAPPING[field] || { type: 'text' }
           const label = _.capitalize(field)
           return <Field
             key={`${fieldName}.${field}`}
             name={`${fieldName}.${field}`}
             component={renderField}
-            type={type}
             label={label}
+            {...fieldTypeProps}
           />
         })
       }

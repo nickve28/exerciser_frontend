@@ -3,7 +3,8 @@ import _ from 'lodash'
 
 const PERFORMED_EXERCISE_PROPS = ['exerciseId', 'weight', 'sets', 'reps', 'mode', 'amount', 'duration']
 
-const toDecimal = _.partialRight(parseInt, 10)
+const toInt = _.partialRight(parseInt, 10)
+const toDecimal = num => parseFloat(num).toFixed(2) / 1
 
 export default (workoutPayload) => {
   const payload = _.cloneDeep(workoutPayload)
@@ -17,9 +18,11 @@ export default (workoutPayload) => {
     return _.reduce(_.keys(filteredExercise), (memo, prop) => {
       if (_.isNull(pExercise[prop])) {
         return memo
+      } else if (prop === 'weight') {
+        return { ...memo, [prop]:  toDecimal(pExercise[prop]) }
       }
 
-      memo[prop] = toDecimal(filteredExercise[prop])
+      memo[prop] = toInt(filteredExercise[prop])
       return memo
     }, {})
   }) //to int for all values
