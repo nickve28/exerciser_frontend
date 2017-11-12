@@ -4,7 +4,7 @@ import configuration from 'app/configs/index'
 export const URL = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`
 
 import _ from 'lodash'
-import HttpTransport from 'lokka-transport-http'
+import { post } from 'app/helpers/request'
 
 export const FETCH_WORKOUTS = 'FETCH_WORKOUTS'
 export const FETCH_MORE_WORKOUTS = 'FETCH_MORE_WORKOUTS'
@@ -45,7 +45,6 @@ export const updateWorkout = (id, {description, workoutDate, performedExercises}
     authorization: `Bearer ${token}`
   }
   return dispatch => {
-    const transport = new HttpTransport(URL, {headers})
     const query = `mutation {
       updateWorkout(id: ${id}, description: "${description}", workoutDate: "${workoutDate}", performedExercises: [${formattedExercises}]) {
         id, description, workoutDate, performedExercises {
@@ -53,7 +52,7 @@ export const updateWorkout = (id, {description, workoutDate, performedExercises}
         }
       }
     }`
-    return transport.send(query).then(function (data) {
+    return post(query, { headers, url: URL }).then(response => {
       setTimeout(() => {
         dispatch({type: UPDATE_WORKOUT_NOTIFICATION_END})
       }, NOTIFICATION_TIMER)
@@ -62,7 +61,7 @@ export const updateWorkout = (id, {description, workoutDate, performedExercises}
         query,
         status: 'success',
         type: UPDATE_WORKOUT,
-        payload: data
+        payload: response
       })
     }).catch(err => handleUnauthorized(err, dispatch))
   }
@@ -92,8 +91,7 @@ export const fetchWorkoutTemplate = () => {
     const headers = {
       authorization: `Bearer ${token}`
     }
-    const transport = new HttpTransport(URL, {headers})
-    transport.send(`{
+    const query = `{
       me {
         workouts(limit: 1) {
           workout_date, performed_exercises {
@@ -101,10 +99,11 @@ export const fetchWorkoutTemplate = () => {
             mode, duration, amount
           }, description, id },
       }
-    }`).then(function (data) {
+    }`
+    return post(query, { headers, url: URL }).then(result => {
       return dispatch({
         type: FETCH_WORKOUT_TEMPLATE,
-        payload: data.me.workouts
+        payload: result.me.workouts
       })
     }).catch(err => handleUnauthorized(err, dispatch))
   }
@@ -136,7 +135,6 @@ export const saveWorkout = (payload) => {
     authorization: `Bearer ${token}`
   }
   return dispatch => {
-    const transport = new HttpTransport(URL, {headers})
     const query = `mutation {
       createWorkout(description: "${description}", workoutDate: "${workoutDate}", performedExercises: [${formattedExercises}]) {
         id, description, workoutDate, performedExercises {
@@ -144,7 +142,7 @@ export const saveWorkout = (payload) => {
         }
       }
     }`
-    return transport.send(query).then(function (data) {
+    return post(query, { headers, url: URL }).then(response => {
       setTimeout(() => {
         dispatch({type: SAVE_WORKOUT_NOTIFICATION_END})
       }, NOTIFICATION_TIMER)
@@ -153,7 +151,7 @@ export const saveWorkout = (payload) => {
         query,
         status: 'success',
         type: SAVE_WORKOUT,
-        payload: data
+        payload: response
       })
     }).catch(err => handleUnauthorized(err, dispatch))
   }
@@ -165,11 +163,10 @@ export const deleteWorkout = (id) => {
     const headers = {
       authorization: `Bearer ${token}`
     }
-    const transport = new HttpTransport(URL, {headers})
     const query = `mutation {
       deleteWorkout(id: ${id})
     }`
-    return transport.send(query).then(function (data) {
+    return post(query, { headers, url: URL }).then(response => {
       setTimeout(() => {
         dispatch({type: DELETE_WORKOUT_NOTIFICATION_END})
       }, NOTIFICATION_TIMER)
@@ -178,7 +175,7 @@ export const deleteWorkout = (id) => {
         query,
         status: 'success',
         type: DELETE_WORKOUT,
-        payload: data
+        payload: response
       })
     }).catch(err => handleUnauthorized(err, dispatch))
   }

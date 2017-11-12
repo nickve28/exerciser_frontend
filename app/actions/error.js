@@ -4,6 +4,8 @@ import { EXERCISE_NOT_DELETED } from './index'
 import { RESET_NOTIFICATIONS}  from './index'
 
 export default (error, dispatch) => {
+  console.error(error); //eslint-disable-line
+
   const isUnauthorized = _.some(_.castArray(error), err => err && err.code === 401)
   if (isUnauthorized) {
     localStorage.removeItem('auth_token')
