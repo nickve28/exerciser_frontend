@@ -3,7 +3,11 @@ import handleUnauthorized from './error'
 import configuration from 'app/configs/index'
 export const URL = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`
 
-import _ from 'lodash'
+import isNull from 'lodash-es/isNull'
+import isString from 'lodash-es/isString'
+import concat from 'lodash-es/concat'
+import keys from 'lodash-es/keys'
+import map from 'lodash-es/map'
 import { post } from 'app/helpers/request'
 
 export const FETCH_WORKOUTS = 'FETCH_WORKOUTS'
@@ -20,27 +24,24 @@ export const UPDATE_WORKOUT = 'UPDATE_WORKOUT'
 const NOTIFICATION_TIMER = 3000
 
 const toFields = pExercise => {
-  const fieldString = _.chain(pExercise)
-    .keys()
+  const fieldString = keys(pExercise)
     .reduce((memo, prop) => {
-      if (_.isNull(pExercise[prop])) {
+      if (isNull(pExercise[prop])) {
         return memo
       }
       let value = pExercise[prop]
-      if (_.isString(value)) {
+      if (isString(value)) {
         value = `"${value}"`
       }
 
-      return _.concat(memo, `${prop}: ${value}`)
-    }, []).join(', ').value()
+      return concat(memo, `${prop}: ${value}`)
+    }, []).join(', ')
   return `{${fieldString}}`
 }
 
 export const updateWorkout = (id, {description, workoutDate, performedExercises}) => {
   const token = localStorage.getItem('auth_token')
-  const formattedExercises = _.chain(performedExercises)
-                               .map(toFields)
-                               .join(',').value()
+  const formattedExercises = map(performedExercises, toFields).join(',')
   const headers = {
     authorization: `Bearer ${token}`
   }
@@ -128,9 +129,7 @@ export const fetchWorkout = (id) => {
 export const saveWorkout = (payload) => {
   const {description, workoutDate, performedExercises} = payload
   const token = localStorage.getItem('auth_token')
-  const formattedExercises = _.chain(performedExercises)
-                               .map(toFields)
-                               .join(',').value()
+  const formattedExercises = map(performedExercises, toFields).join(',')
   const headers = {
     authorization: `Bearer ${token}`
   }

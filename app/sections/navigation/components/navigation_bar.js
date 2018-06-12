@@ -2,7 +2,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import { isEmpty, get } from 'lodash'
+import isEmpty from 'lodash-es/isEmpty'
+import get from 'lodash-es/get'
 
 import { Popover, Menu } from 'material-ui'
 import MediaQuery from 'react-responsive'

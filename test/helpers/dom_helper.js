@@ -1,6 +1,6 @@
 /* eslint-disable */
 var jsdom = require('jsdom')
-var _ = require('lodash')
+var noop = require('lodash').noop
 // setup the simplest document possible
 var doc = jsdom.jsdom('<!doctype html><html><body><div id="root" /></body></html>')
 
@@ -17,9 +17,9 @@ global.document = doc
 global.window = win
 
 export const localStorage = {
-  getItem: _.noop,
-  setItem: _.noop,
-  removeItem: _.noop
+  getItem: noop,
+  setItem: noop,
+  removeItem: noop
 }
 
 global.localStorage = localStorage

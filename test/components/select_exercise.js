@@ -6,7 +6,8 @@ import chaiEnzyme from 'chai-enzyme'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 
-import _ from 'lodash'
+import noop from 'lodash-es/noop'
+import last from 'lodash-es/last'
 
 import SelectExercise from '../../app/components/exercises/select'
 import {shallowRender} from '../helpers/theme_helper'
@@ -24,7 +25,7 @@ describe('<SelectExercise />', () => {
       <SelectExercise
         exercises={exercises}
         selectedExercise={null}
-        onSelect={_.noop}
+        onSelect={noop}
       />
     )
     const select = wrapper.find('SelectField')
@@ -66,8 +67,8 @@ describe('<SelectExercise />', () => {
       const wrapper = shallowRender(
         <SelectExercise
           exercises={exercises}
-          selectedExercise={_.last(exercises).id}
-          onSelect={_.noop}
+          selectedExercise={last(exercises).id}
+          onSelect={noop}
         />
       )
 

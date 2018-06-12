@@ -1,6 +1,6 @@
 import React from 'react'
 import ChipInput from 'material-ui-chip-input'
-import { pick } from 'lodash'
+import pick from 'lodash-es/pick'
 
 import MaterialLabel from './label'
 

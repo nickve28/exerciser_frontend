@@ -7,7 +7,9 @@
     "start": "NODE_ENV=development webpack-dev-server --hot",
     "ci-test": "mocha --require babel-polyfill --compilers js:babel-core/register --watch --recursive test",
     "test": "NODE_PATH='./' mocha --require ignore-styles --include babel-polyfill --compilers js:babel-core/register --recursive test",
-    "lint": "eslint ./app ./spec"
+    "lint": "eslint ./app ./spec",
+    "init-analyze": "ANALYZE=1 webpack --profile --json > stats.json",
+    "analyze": "webpack-bundle-analyzer stats.json"
   },
   "babel": {
     "presets": [
@@ -20,7 +22,7 @@
     "axios": "^0.15.3",
     "bluebird": "^3.4.6",
     "joi": "^10.1.0",
-    "lodash": "^4.17.2",
+    "lodash-es": "^4.17.10",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.6.1",
     "material-ui": "^0.16.6",
@@ -44,6 +46,8 @@
     "reselect": "^2.5.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -75,6 +79,7 @@
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.18.2",
     "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.1.4"
   }

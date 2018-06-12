@@ -1,5 +1,5 @@
 import React from 'react'
-import { pick } from 'lodash'
+import pick from 'lodash-es/pick'
 
 import { TextField } from 'material-ui'
 

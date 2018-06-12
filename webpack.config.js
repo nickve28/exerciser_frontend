@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var CompressionPlugin = require("compression-webpack-plugin");
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 var APP_ENV       = process.env.APP_ENV || process.env.NODE_ENV || 'development';
 var IS_PROD_BUILD = !["development", "test"].includes(APP_ENV);
@@ -60,6 +61,10 @@ module.exports = {
     })
   ]
 };
+
+if (process.env.ANALYZE) {
+  module.exports.plugins.push(new BundleAnalyzerPlugin());
+}
 
 if (IS_PROD_BUILD) {
   module.exports.plugins.push(new CompressionPlugin({

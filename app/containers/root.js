@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { values } from 'lodash'
+import values from 'lodash-es/values'
 
 import { fetchMe } from 'app/sections/users/actions/user'
 

@@ -1,4 +1,8 @@
-import { pick, isNull, some, values, includes } from 'lodash'
+import pick from 'lodash-es/pick'
+import isNull from 'lodash-es/isNull'
+import some from 'lodash-es/some'
+import values from 'lodash-es/values'
+import includes from 'lodash-es/includes'
 import { post } from 'app/helpers/request'
 import Promise from 'bluebird'
 

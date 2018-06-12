@@ -4,7 +4,8 @@ import { SelectField, MenuItem } from 'material-ui'
 import Delete from 'material-ui/svg-icons/action/delete'
 import { Field } from 'redux-form'
 
-import _ from 'lodash'
+import map from 'lodash-es/map'
+import capitalize from 'lodash-es/capitalize'
 
 const FIELD_TYPE_MAPPING = {
   metric: { type: 'text' },
@@ -43,7 +44,7 @@ export default (props) => {
               }}
               maxHeight={200}
             >
-              {_.map(exercises, exercise => {
+              {map(exercises, exercise => {
                 return <MenuItem name="exercise_list" value={exercise.id} key={exercise.id} primaryText={exercise.name} />
               })}
             </SelectField>
@@ -54,9 +55,9 @@ export default (props) => {
         } />
       </div>
       {
-        _.map(fields, field => {
+        map(fields, field => {
           let fieldTypeProps = FIELD_TYPE_MAPPING[field] || { type: 'text' }
-          const label = _.capitalize(field)
+          const label = capitalize(field)
           return <Field
             key={`${fieldName}.${field}`}
             name={`${fieldName}.${field}`}

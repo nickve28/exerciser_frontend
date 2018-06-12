@@ -1,7 +1,7 @@
 import handleUnauthorized from './error'
 import configuration from 'app/configs/index'
 
-import _ from 'lodash'
+import compact from 'lodash-es/compact'
 import {post} from 'app/helpers/request'
 
 export const FETCH_PROGRESS = 'FETCH_PROGRESS'
@@ -11,13 +11,11 @@ const url = `${configuration.apiHost}:${configuration.apiPort}/api/graphql`
 
 export const fetchProgress = ({exerciseId, fromDate, untilDate}) => {
   const token = localStorage.getItem('auth_token')
-  const filters = _.chain([
+  const filters = compact([
     fromDate ? `from: "${fromDate}"` : null,
     untilDate ? `until: "${untilDate}"` : null,
     `exerciseId: ${exerciseId}`
-  ]).compact()
-    .join(', ')
-    .value()
+  ]).join(', ')
 
   const headers = {
     authorization: `Bearer ${token}`

@@ -1,10 +1,10 @@
 import React from 'react'
-import _ from 'lodash'
+import map from 'lodash-es/map'
 
 import {MenuItem, SelectField} from 'material-ui'
 
 const renderItems = exercises => {
-  return _.map(exercises, exercise => {
+  return map(exercises, exercise => {
     const {id, name} = exercise
     return (
       <MenuItem

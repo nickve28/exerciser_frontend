@@ -8,13 +8,22 @@ import {validateWorkoutCreate, validatePExerciseCreate, validatePExerciseUnique}
 import { SubmissionError } from 'redux-form'
 
 import moment from 'moment'
-import _ from 'lodash'
+import isEmpty from 'lodash-es/isEmpty'
+import noop from 'lodash-es/noop'
+import omit from 'lodash-es/omit'
+import replace from 'lodash-es/replace'
+import reduce from 'lodash-es/reduce'
+import merge from 'lodash-es/merge'
+import get from 'lodash-es/get'
+import some from 'lodash-es/some'
+import map from 'lodash-es/map'
+import compact from 'lodash-es/compact'
 
 import WorkoutForm from '../components/workout_form'
 
 import preparePayload from '../helpers/prepare_workout_payload'
 
-const toDecimal = _.partialRight(parseInt, 10)
+const toDecimal = num => parseInt(num, 10)
 
 class EditWorkout extends Component {
   constructor(props) {
@@ -27,7 +36,7 @@ class EditWorkout extends Component {
   componentDidMount() {
     //const fetchWorkouts = this.props.fetchWorkout(this.props.params.id)
 
-    if (_.isEmpty(this.props.exercises)) {
+    if (isEmpty(this.props.exercises)) {
       return this.props.fetchExercises()
     }
   }
@@ -36,7 +45,7 @@ class EditWorkout extends Component {
     return (
       <WorkoutForm
         handleFormSubmit={this.props.handleSubmit(this.handleFormSubmit)}
-        handleLoadTemplate={_.noop}
+        handleLoadTemplate={noop}
         action="Edit"
         exercises={this.props.exercises}
         exerciseOrder={this.props.exerciseOrder}
@@ -47,10 +56,10 @@ class EditWorkout extends Component {
   }
 
   handleFormSubmit(values) {
-    let payload = _.omit(values, 'id')
+    let payload = omit(values, 'id')
     const errors = validate(values)
 
-    if (!_.isEmpty(errors)) {
+    if (!isEmpty(errors)) {
       this.setState({errors})
       throw new SubmissionError(errors)
     }
@@ -66,18 +75,15 @@ class EditWorkout extends Component {
 }
 
 function validate(data) {
-  const topLevelErrors = validateWorkoutCreate(_.omit(data, ['performedExercises', 'id']))
-  const exerciseErrors = _.map(data.performedExercises, validatePExerciseCreate)
-  const exerciseIds = _(data.performedExercises)
-    .map('exerciseId')
-    .compact()
+  const topLevelErrors = validateWorkoutCreate(omit(data, ['performedExercises', 'id']))
+  const exerciseErrors = map(data.performedExercises, validatePExerciseCreate)
+  const exerciseIds = compact(map(data.performedExercises, 'exerciseId'))
     .map(id => toDecimal(id)) //the 2nd parameter of map is causing trouble
-    .value()
 
   const exerciseUniqueError = validatePExerciseUnique(exerciseIds).error
 
-  const errorMessages = _.reduce(_.get(topLevelErrors, 'error.details'), (memo, {message, path}) => {
-    memo[path] = _.replace(message, /"/g, '')
+  const errorMessages = reduce(get(topLevelErrors, 'error.details'), (memo, {message, path}) => {
+    memo[path] = replace(message, /"/g, '')
     return memo
   }, {})
 
@@ -86,12 +92,12 @@ function validate(data) {
     errorMessages.uniqueExerciseError = err
   }
 
-  const someErrorsPresentInExercises = _.some(exerciseErrors, ({error}) => error)
+  const someErrorsPresentInExercises = some(exerciseErrors, ({error}) => error)
 
   if (someErrorsPresentInExercises) {
-    errorMessages.performedExercises = _.map(exerciseErrors, ({error}) => {
-      return _.reduce(_.get(error, 'details'), (memo, {message, path}) => {
-        memo[path] = _.replace(message, /"/g, '')
+    errorMessages.performedExercises = map(exerciseErrors, ({error}) => {
+      return reduce(get(error, 'details'), (memo, {message, path}) => {
+        memo[path] = replace(message, /"/g, '')
         return memo
       }, {})
     })
@@ -102,7 +108,7 @@ function validate(data) {
 function mapStateToProps(state, props) {
   const exercises = state.exercises.data.entities
 
-  if (_.isEmpty(exercises)) {
+  if (isEmpty(exercises)) {
     return {
       exercises: [],
       exerciseOrder: [],
@@ -113,8 +119,8 @@ function mapStateToProps(state, props) {
   const initialValues = state.workoutFetch.data.entities[props.params.id]
   if (initialValues) {
     initialValues.workoutDate = moment(initialValues.workoutDate).toDate()
-    initialValues.performedExercises = _.map(initialValues.performedExercises, pExercise => {
-      return _.merge({}, pExercise, {type: exercises[pExercise.exerciseId].type})
+    initialValues.performedExercises = map(initialValues.performedExercises, pExercise => {
+      return merge({}, pExercise, {type: exercises[pExercise.exerciseId].type})
     })
   }
 
