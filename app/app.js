@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import ReduxThunk from 'redux-thunk'
+import { hot } from 'react-hot-loader'
 
 import middlewares from './middlewares/index'
 
@@ -54,7 +55,7 @@ const store = createStore(reducers, initialState, enhancer)
 
 injectTapEventPlugin()
 
-ReactDOM.render(
+const App = () => (
   <Provider store={store}>
     <MuiThemeProvider>
       <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
@@ -71,4 +72,8 @@ ReactDOM.render(
       </Router>
     </MuiThemeProvider>
   </Provider>
-  , document.querySelector('#root'))
+);
+
+ReactDOM.render(<App />, document.querySelector('#root'));
+
+export default hot(module)(App)

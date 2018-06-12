@@ -1,16 +1,25 @@
 /*eslint-disable*/
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var APP_ENV       = process.env.APP_ENV || process.env.NODE_ENV || 'development';
-var IS_PROD_BUILD = ! ["development", "test"].includes(APP_ENV);
-
+var IS_PROD_BUILD = !["development", "test"].includes(APP_ENV);
 
 module.exports = {
-  entry: './app/app.js',
-  output: { path: __dirname, filename: './dist/app.js' },
+  mode: IS_PROD_BUILD ? 'production' : 'development',
+  entry: [
+    IS_PROD_BUILD && 'react-hot-loader/patch',
+    path.resolve('./app/app.js')
+  ].filter(Boolean),
+  //output: { path: __dirname, filename: '[name].[hash].js' },
+  output: {
+    filename: 'static/js/[name].[hash].bundle.js',
+    // There are also additional JS chunk files if you use code splitting.
+    chunkFilename: 'static/js/[name].chunk.js',
+  },
   node: {
     dns: 'mock',
     net: 'mock'
@@ -20,30 +29,39 @@ module.exports = {
     modules: [__dirname, "node_modules"]
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.jsx?$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'es2016', 'react', 'stage-3', 'stage-0']
-        }
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: ['css-loader'],
-                }),
+        use: [
+          !IS_PROD_BUILD ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       }
     ]
   },
+  optimization: {
+    minimize: IS_PROD_BUILD
+  },
   plugins: [
-    new ExtractTextPlugin('./dist/app.css')
+    new MiniCssExtractPlugin({
+      filename: !IS_PROD_BUILD ? '[name].css' : '[name].[hash].css',
+      chunkFilename: !IS_PROD_BUILD ? '[id].css' : '[id].[hash].css'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Exerciser',
+      // Load a custom template (lodash by default see the FAQ for details)
+      template: 'index.html'
+    })
   ]
 };
 
 if (IS_PROD_BUILD) {
-  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
   module.exports.plugins.push(new CompressionPlugin({
     asset: "[file].gz",
     algorithm: "gzip",
@@ -55,7 +73,5 @@ if (IS_PROD_BUILD) {
     }
   }));
 } else {
-  var exclude = /node_modules/
-  module.exports.module.loaders[0].exclude = exclude
   module.exports.devtool = 'inline-sourcemap'
 }

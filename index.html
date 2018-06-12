@@ -8,11 +8,13 @@
     <meta name="author" content="">
 
     <title>Exerciser</title>
-    <link rel="stylesheet" href="./dist/app.css">
+    <link rel="stylesheet" href="./app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css">
   </head>
   <body>
     <div id="root" />
-    <script src="./dist/app.js"></script>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+      <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <% } %>
   </body>
 </html>
