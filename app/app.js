@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import ReduxThunk from 'redux-thunk'
-import { hot } from 'react-hot-loader'
 
 import middlewares from './middlewares/index'
 
@@ -56,7 +55,7 @@ const store = createStore(reducers, initialState, enhancer)
 // this needs to be fixed properly
 // But currently gives trouble with HMR
 !window.injectTapEventPluginCalled && injectTapEventPlugin()
-window.injectTapEventPluginCalled = true;
+window.injectTapEventPluginCalled = true
 
 const App = () => (
   <Provider store={store}>
@@ -75,7 +74,7 @@ const App = () => (
       </Router>
     </MuiThemeProvider>
   </Provider>
-);
+)
 
 
 if (module.hot) {
