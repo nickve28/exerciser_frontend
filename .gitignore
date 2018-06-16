@@ -4,3 +4,4 @@ node_modules
 _build
 npm-debug.log
 stats.json
+yarn-error.log

@@ -12,14 +12,12 @@ var IS_PROD_BUILD = !["development", "test"].includes(APP_ENV);
 module.exports = {
   mode: IS_PROD_BUILD ? 'production' : 'development',
   entry: [
-    IS_PROD_BUILD && 'react-hot-loader/patch',
+    !IS_PROD_BUILD && 'webpack-hot-middleware/client',
     path.resolve('./app/app.js')
   ].filter(Boolean),
-  //output: { path: __dirname, filename: '[name].[hash].js' },
   output: {
-    filename: 'static/js/[name].[hash].bundle.js',
-    // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: 'static/js/[name].chunk.js',
+    filename: '[name].[hash].js',
+    publicPath: './',
   },
   node: {
     dns: 'mock',
@@ -53,6 +51,7 @@ module.exports = {
       filename: !IS_PROD_BUILD ? '[name].css' : '[name].[hash].css',
       chunkFilename: !IS_PROD_BUILD ? '[id].css' : '[id].[hash].css'
     }),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'Exerciser',
@@ -78,5 +77,5 @@ if (IS_PROD_BUILD) {
     }
   }));
 } else {
-  module.exports.devtool = 'inline-sourcemap'
+  module.exports.devtool = 'cheap-module-source-map'
 }

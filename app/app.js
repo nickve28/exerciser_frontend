@@ -53,7 +53,10 @@ const initialState = {
 //middleware not loaded?
 const store = createStore(reducers, initialState, enhancer)
 
-injectTapEventPlugin()
+// this needs to be fixed properly
+// But currently gives trouble with HMR
+!window.injectTapEventPluginCalled && injectTapEventPlugin()
+window.injectTapEventPluginCalled = true;
 
 const App = () => (
   <Provider store={store}>
@@ -74,6 +77,9 @@ const App = () => (
   </Provider>
 );
 
+
+if (module.hot) {
+  module.hot.accept();
+}
 ReactDOM.render(<App />, document.querySelector('#root'));
 
-export default hot(module)(App)
