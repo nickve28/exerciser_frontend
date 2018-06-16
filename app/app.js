@@ -77,8 +77,8 @@ const App = () => (
 )
 
 
-if (module.hot) {
-  module.hot.accept();
+if (module.hot) { // eslint-disable-line no-undef
+  module.hot.accept() //eslint-disable-line no-undef
 }
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<App />, document.querySelector('#root'))
 
