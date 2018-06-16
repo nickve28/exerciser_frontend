@@ -55,7 +55,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'Exerciser',
-      // Load a custom template (lodash by default see the FAQ for details)
       template: 'index.html'
     })
   ]
