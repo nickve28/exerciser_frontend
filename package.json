@@ -5,18 +5,10 @@
     "deploy": "NODE_ENV=production webpack -p",
     "watch": "yarn start",
     "start": "node bin/start",
-    "ci-test": "mocha --require babel-polyfill --compilers js:babel-core/register --watch --recursive test",
-    "test": "NODE_PATH='./' mocha --require ignore-styles --include babel-polyfill --compilers js:babel-core/register --recursive test",
+    "test": "NODE_ENV=test NODE_PATH='./' mocha --recursive test",
     "lint": "eslint ./app ./spec",
     "init-analyze": "ANALYZE=1 webpack --profile --json > stats.json",
     "analyze": "webpack-bundle-analyzer stats.json"
-  },
-  "babel": {
-    "presets": [
-      "env",
-      "react",
-      "stage-2"
-    ]
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -75,6 +67,7 @@
     "mocha": "^3.2.0",
     "moxios": "^0.4.0",
     "react-addons-test-utils": "^15.4.2",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.18.2",
