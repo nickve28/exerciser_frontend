@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import _ from 'lodash'
+import defaults from 'lodash-es/defaults'
 
 const JOI_OPTIONS = {abortEarly: false, convert: true}
 
@@ -58,7 +58,7 @@ export const validateWorkoutCreate = (payload) => {
 }
 
 export const validatePExerciseCreate = (payload) => {
-  return Joi.validate(payload, CREATE_PERFORMED_EXERCISE_SCHEMA, _.defaults({allowUnknown: true}, JOI_OPTIONS))
+  return Joi.validate(payload, CREATE_PERFORMED_EXERCISE_SCHEMA, defaults({allowUnknown: true}, JOI_OPTIONS))
 }
 
 export const validatePExerciseUnique = (ids) => {

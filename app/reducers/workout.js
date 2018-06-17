@@ -1,5 +1,7 @@
 import { FETCH_WORKOUT_TEMPLATE } from '../actions/index'
-import _ from 'lodash'
+import map from 'lodash-es/map'
+import defaults from 'lodash-es/defaults'
+import first from 'lodash-es/first'
 
 const INITIAL_STATE = {
   selectedWorkout: null,
@@ -15,7 +17,7 @@ const toWorkoutModel = (workoutData) => {
   return {
     description, id,
     workoutDate: workoutData.workout_date,
-    performedExercises: _.map(workoutData.performed_exercises, pExercise => {
+    performedExercises: map(workoutData.performed_exercises, pExercise => {
       const { weight, sets, reps, metric, mode, amount, duration } = pExercise
       return {
         exerciseId: pExercise.exercise_id,
@@ -28,30 +30,30 @@ const toWorkoutModel = (workoutData) => {
 export default (state = INITIAL_STATE, action = {}) => {
   // if (action.type === FETCH_WORKOUTS) {
   //   const workoutCount = action.payload.workout_count
-  //   return _.defaults({
+  //   return defaults({
   //     workoutCount,
-  //     workouts: _.map(action.payload.workouts, toWorkoutModel)
+  //     workouts: map(action.payload.workouts, toWorkoutModel)
   //   }, INITIAL_STATE)
   // }
 
   // if (action.type === FETCH_WORKOUT) {
-  //   return _.defaults({
+  //   return defaults({
   //     selectedWorkout: toWorkoutModel(action.payload)
   //   }, INITIAL_STATE)
   // }
 
   if (action.type === FETCH_WORKOUT_TEMPLATE) {
-    return _.defaults({
-      workoutTemplate: toWorkoutModel(_.first(action.payload))
+    return defaults({
+      workoutTemplate: toWorkoutModel(first(action.payload))
     }, INITIAL_STATE)
   }
 
   // if (action.type === FETCH_MORE_WORKOUTS) {
   //   const workoutCount = action.payload.workout_count
 
-  //   return _.defaults({
+  //   return defaults({
   //     workoutCount,
-  //     workouts: _.concat(state.workouts, _.map(action.payload.workouts, toWorkoutModel))
+  //     workouts: concat(state.workouts, map(action.payload.workouts, toWorkoutModel))
   //   }, INITIAL_STATE)
   // }
 

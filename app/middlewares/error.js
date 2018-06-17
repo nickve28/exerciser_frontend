@@ -1,4 +1,7 @@
-import _ from 'lodash'
+import some from 'lodash-es/some'
+import castArray from 'lodash-es/castArray'
+import forEach from 'lodash-es/forEach'
+import has from 'lodash-es/has'
 
 import {
   RESET_NOTIFICATIONS
@@ -35,7 +38,7 @@ const middleware = store => next => action => {
   const dispatch = store.dispatch
   const error = action.error
 
-  const isUnauthorized = _.some(_.castArray(error), err => err && err.code === 401)
+  const isUnauthorized = some(castArray(error), err => err && err.code === 401)
   if (isUnauthorized) {
     localStorage.removeItem('auth_token')
     dispatch({ type: USER_LOGIN_EXPIRED })
@@ -46,8 +49,8 @@ const middleware = store => next => action => {
     }, 5000)
   }
 
-  _.forEach(error, ({ code, details }) => {
-    const isWorkoutNotDeletedError = code === 422 && _.has(details, 'performed_exercises')
+  forEach(error, ({ code, details }) => {
+    const isWorkoutNotDeletedError = code === 422 && has(details, 'performed_exercises')
     if (isWorkoutNotDeletedError) {
       dispatch({
         type: EXERCISE_NOT_DELETED

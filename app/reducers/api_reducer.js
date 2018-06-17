@@ -1,11 +1,16 @@
-import { values, includes, map, chain, upperFirst, omit, get, reject } from 'lodash'
+import values from 'lodash-es/values'
+import includes from 'lodash-es/includes'
+import map from 'lodash-es/map'
+import fromPairs from 'lodash-es/fromPairs'
+import upperFirst from 'lodash-es/upperFirst'
+import omit from 'lodash-es/omit'
+import get from 'lodash-es/get'
+import reject from 'lodash-es/reject'
 import { combineReducers } from 'redux'
 
 export default config => {
   const toKeyStore = entities =>
-    chain(entities)
-    .map(entity => [entity.id, entity])
-    .fromPairs().value()
+    fromPairs(map(entities, entity => [entity.id, entity]))
 
   const allActions = values(config.actions)
   const createFieldName = `create${upperFirst(config.dataType)}`

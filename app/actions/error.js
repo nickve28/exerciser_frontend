@@ -1,4 +1,8 @@
-import _ from 'lodash'
+import forEach from 'lodash-es/forEach'
+import some from 'lodash-es/some'
+import castArray from 'lodash-es/castArray'
+import has from 'lodash-es/has'
+
 import { USER_LOGIN_EXPIRED, USER_LOGIN_EXPIRE_END } from './authentication'
 import { EXERCISE_NOT_DELETED } from './index'
 import { RESET_NOTIFICATIONS}  from './index'
@@ -6,7 +10,7 @@ import { RESET_NOTIFICATIONS}  from './index'
 export default (error, dispatch) => {
   console.error(error); //eslint-disable-line
 
-  const isUnauthorized = _.some(_.castArray(error), err => err && err.code === 401)
+  const isUnauthorized = some(castArray(error), err => err && err.code === 401)
   if (isUnauthorized) {
     localStorage.removeItem('auth_token')
     dispatch({type: USER_LOGIN_EXPIRED})
@@ -18,8 +22,8 @@ export default (error, dispatch) => {
   }
 
   //now some real error handling
-  _.forEach(error.errors, ({ code, details }) => {
-    const isWorkoutNotDeletedError = code === 422 && _.has(details, 'performed_exercises')
+  forEach(error.errors, ({ code, details }) => {
+    const isWorkoutNotDeletedError = code === 422 && has(details, 'performed_exercises')
     if (isWorkoutNotDeletedError) {
       dispatch({
         type: EXERCISE_NOT_DELETED

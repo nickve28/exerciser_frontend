@@ -1,4 +1,4 @@
-import { reduce } from 'lodash'
+import reduce from 'lodash-es/reduce'
 
 import { FETCH_CATEGORIES } from 'app/sections/exercises/actions/category'
 

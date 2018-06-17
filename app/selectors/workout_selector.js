@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect'
 
-import _ from 'lodash'
+import isEmpty from 'lodash-es/isEmpty'
+import reduce from 'lodash-es/reduce'
+import map from 'lodash-es/map'
+import defaults from 'lodash-es/defaults'
 
 const exerciseSelector = state => state.exercises.data.entities
 const workoutSelector =  state => state.workouts.selectedWorkout
@@ -10,17 +13,17 @@ const toViewModel = (exercises, workout) => {
 }
 
 const combineExercises = (workout, exercises) => {
-  const dataNotLoaded = _.isEmpty(exercises) || _.isEmpty(workout)
+  const dataNotLoaded = isEmpty(exercises) || isEmpty(workout)
   if (dataNotLoaded) {
     return null
   }
 
-  const exerciseMap = _.reduce(exercises, (memo, exercise) => {
+  const exerciseMap = reduce(exercises, (memo, exercise) => {
     memo[exercise.id] = exercise
     return memo
   }, {})
 
-  const mergedExercises = _.map(workout.performedExercises, exercise => {
+  const mergedExercises = map(workout.performedExercises, exercise => {
     const {
       exerciseId, sets, reps, weight, metric, mode, duration, amount
     } = exercise
@@ -31,7 +34,7 @@ const combineExercises = (workout, exercises) => {
       type: exerciseMap[exerciseId].type
     }
   })
-  return _.defaults({performedExercises: mergedExercises}, workout)
+  return defaults({performedExercises: mergedExercises}, workout)
 
 }
 

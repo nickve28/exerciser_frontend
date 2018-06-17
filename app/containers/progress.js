@@ -2,7 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProgress, fetchExercises} from '../actions/index'
 
-import _ from 'lodash'
+import isEmpty from 'lodash-es/isEmpty'
+import defaults from 'lodash-es/defaults'
+import mapKeys from 'lodash-es/mapKeys'
+import get from 'lodash-es/get'
+import last from 'lodash-es/last'
+import first from 'lodash-es/first'
+
 import moment from 'moment'
 
 import SelectExercise from '../components/exercises/select'
@@ -24,13 +30,12 @@ class Progress extends Component {
 
   onSelect(payload) {
     this.setState(payload)
-    const requestPayload = _.chain(payload)
-      .defaults(payload, this.state)
-      .mapKeys((value, key) => {
+    const requestPayload = mapKeys(defaults({}, payload, this.state),
+      (value, key) => {
         if (key === 'from') return 'fromDate'
         if (key === 'until') return 'untilDate'
         return key
-      }).value()
+      })
 
     if (!requestPayload.from) {
       requestPayload.fromDate = moment().subtract(3, 'months').format('YYYY-MM-DD')
@@ -42,12 +47,12 @@ class Progress extends Component {
   render() {
     const { progress, exercises } = this.props
 
-    const progressData = _.get(progress, 'progress', [])
-    const exerciseType = _.get(progress, 'exerciseType')
-    const startDate = _.get(_.last(progressData), 'date')
-    const endDate = _.get(_.first(progressData), 'date')
+    const progressData = get(progress, 'progress', [])
+    const exerciseType = get(progress, 'exerciseType')
+    const startDate = get(last(progressData), 'date')
+    const endDate = get(first(progressData), 'date')
 
-    if (_.isEmpty(exercises)) {
+    if (isEmpty(exercises)) {
       return <div>Loading...</div>
     }
 

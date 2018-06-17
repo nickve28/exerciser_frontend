@@ -1,11 +1,11 @@
 import React from 'react'
+import isEmpty from 'lodash-es/isEmpty'
 
-import _ from 'lodash'
 import ProgressGraph from './graph'
 import EnduranceProgressGraph from './endurance_graph'
 
 export default ({progress, exerciseType}) => {
-  if (_.isEmpty(progress)) {
+  if (isEmpty(progress)) {
     return <div>Please select an exercise</div>
   }
 

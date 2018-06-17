@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchWorkout, fetchExercises} from '../actions/index'
-import _ from 'lodash'
+import isEmpty from 'lodash-es/isEmpty'
+import map from 'lodash-es/map'
 
 import {Link} from 'react-router'
 //import workoutSelector from '../selectors/workout_selector'
@@ -21,7 +22,7 @@ class WorkoutDetail extends Component {
     }
 
     let fetchExercises = true
-    if (_.isEmpty(this.props.exercises)) {
+    if (isEmpty(this.props.exercises)) {
       fetchExercises = this.props.fetchExercises()
     }
     return Promise.join(fetchWorkouts, fetchExercises)
@@ -51,7 +52,7 @@ class WorkoutDetail extends Component {
           <li className="list-view-group-item">{workout.description}</li>
           <li className="list-view-group-item">
             <p>Exercises performed</p>
-            {_.map(workout.performedExercises, exercise => {
+            {map(workout.performedExercises, exercise => {
               const {type, exerciseId} = exercise
               const Details = type === 'strength' ? StrengthExerciseDetails : EnduranceExerciseDetails
               return (

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash-es/map'
 
 export const FETCH_EXERCISES = 'FETCH_EXERCISES'
 export const FETCH_EXERCISE = 'FETCH_EXERCISE'
@@ -37,9 +37,8 @@ export const fetchExercise = (id) => {
 }
 
 export const saveExercise = ({name, description, categories, type, metric}) => {
-  const formatted_categories = _.chain(categories)
-                                .map(category => `"${category}"`)
-                                .join(',').value()
+  const formatted_categories = map(categories, category => `"${category}"`)
+                                .join(',')
   const query = `mutation {
     createExercise(name: "${name}", categories: [${formatted_categories}], description: "${description}", type: "${type}", metric: "${metric}") {
       name, id, categories, metric, type, description
@@ -54,9 +53,8 @@ export const saveExercise = ({name, description, categories, type, metric}) => {
 }
 
 export const updateExercise = ({id, description, categories}) => {
-  const formatted_categories = _.chain(categories)
-                                .map(category => `"${category}"`)
-                                .join(',').value()
+  const formatted_categories = map(categories, category => `"${category}"`)
+                                .join(',')
   const query = `mutation {
     updateExercise(id: ${id}, categories: [${formatted_categories}], description: "${description}") {
       name, id, description, categories, type, metric

@@ -1,6 +1,7 @@
 import React from 'react'
 import { SelectField, MenuItem } from 'material-ui'
-import { map, keys } from 'lodash'
+import map from 'lodash-es/map'
+import keys from 'lodash-es/keys'
 
 import MaterialLabel from './label'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { noop } from 'lodash'
+import noop from 'lodash-es/noop'
 import { Snackbar } from 'material-ui'
 
 //needs rework once all notification are housed here

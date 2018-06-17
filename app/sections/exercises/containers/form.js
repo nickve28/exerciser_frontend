@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { partial } from 'lodash'
+import partial from 'lodash-es/partial'
 
 import MaterialCreateButton from '../../../components/material/form/create_button'
 import MaterialField from '../../../components/material/form/field'

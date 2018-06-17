@@ -17,7 +17,11 @@ const LARGE_DEVICE_QUERY = '(min-device-width: 1024px)'
 import DatePicker from './datepicker'
 
 import moment from 'moment'
-import _ from 'lodash'
+
+import map from 'lodash-es/map'
+import isEmpty from 'lodash-es/isEmpty'
+import defaults from 'lodash-es/defaults'
+import get from 'lodash-es/get'
 
 const EMPTY_EXERCISE = {
   exerciseId: null,
@@ -33,7 +37,7 @@ const STRENGTH_FIELDS = ['weight', 'sets', 'reps']
 const ENDURANCE_FIELDS = ['amount', 'duration', 'mode']
 
 const decideFields = (exercise) => {
-  if (_.isEmpty(exercise)) return []
+  if (isEmpty(exercise)) return []
   if (exercise.type === 'strength') return STRENGTH_FIELDS
   return ENDURANCE_FIELDS
 }
@@ -58,8 +62,8 @@ class WorkoutForm extends Component {
 
   onExerciseChange(exerciseId, index, fields) {
     fields.remove(index)
-    const {type} = _.get(this, 'props.exercises', {})[exerciseId]
-    const newExercise = _.defaults({exerciseId, type}, EMPTY_EXERCISE)
+    const {type} = get(this, 'props.exercises', {})[exerciseId]
+    const newExercise = defaults({exerciseId, type}, EMPTY_EXERCISE)
     setTimeout(() => {
       fields.insert(index, newExercise)
     }, 50) //this is for now needed, due to: https://github.com/erikras/redux-form/issues/2466 which is not available currently
@@ -67,7 +71,7 @@ class WorkoutForm extends Component {
 
 
   renderPerformedExercises({fields}) {
-    const orderedExercises = _.map(this.props.exerciseOrder, exerciseId => this.props.exercises[exerciseId])
+    const orderedExercises = map(this.props.exerciseOrder, exerciseId => this.props.exercises[exerciseId])
 
     return (
       <span>
@@ -115,7 +119,7 @@ class WorkoutForm extends Component {
   }
 
   renderError(error, key) {
-    if (!_.get(error, key)) { return '' }
+    if (!get(error, key)) { return '' }
     return <div className="error-text">{error[key]}</div>
   }
 

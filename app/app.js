@@ -52,9 +52,12 @@ const initialState = {
 //middleware not loaded?
 const store = createStore(reducers, initialState, enhancer)
 
-injectTapEventPlugin()
+// this needs to be fixed properly
+// But currently gives trouble with HMR
+!window.injectTapEventPluginCalled && injectTapEventPlugin()
+window.injectTapEventPluginCalled = true
 
-ReactDOM.render(
+const App = () => (
   <Provider store={store}>
     <MuiThemeProvider>
       <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
@@ -71,4 +74,11 @@ ReactDOM.render(
       </Router>
     </MuiThemeProvider>
   </Provider>
-  , document.querySelector('#root'))
+)
+
+
+if (module.hot) { // eslint-disable-line no-undef
+  module.hot.accept() //eslint-disable-line no-undef
+}
+ReactDOM.render(<App />, document.querySelector('#root'))
+

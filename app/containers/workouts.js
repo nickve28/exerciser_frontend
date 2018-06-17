@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import {fetchWorkouts, deleteWorkout} from '../actions/index'
 import {Link} from 'react-router'
 
-import { map, partial, values } from 'lodash'
+
+import values from 'lodash-es/values'
+import map from 'lodash-es/map'
+import partial from 'lodash-es/partial'
 
 import {RaisedButton, Snackbar} from 'material-ui'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
